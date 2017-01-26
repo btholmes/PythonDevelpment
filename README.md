@@ -21,16 +21,16 @@
  * Download PyCharm IDE https://www.jetbrains.com/pycharm/download/
 
  * GITHUB COMMANDS 
- 	git clone github.com/blah/blah  (This will store a copy of the Github repository on your local machine) 
+  * git clone github.com/blah/blah  (This will store a copy of the Github repository on your local machine) 
 	
 	
-	NOW LETS CREATE AND EDIT OUR OWN REPOSITORY
-		Make the repository on github Repositories-new
-	git clone yourRepository
-	cd into yourRepository
-	touch example.txt
-	open example.txt (Write something in the file) 
-	git add .
-	git commit -m "Message" 
-	git push origin master
+  * NOW LETS CREATE AND EDIT OUR OWN REPOSITORY
+  * Make the repository on github Repositories-new
+  * git clone yourRepository
+  * cd into yourRepository
+  * touch example.txt
+  * open example.txt (Write something in the file) 
+  * git add .
+  * git commit -m "Message" 
+  * git push origin master
 	
