@@ -1,7 +1,7 @@
 # Python Development Club
  * Resources
- 	codingbat.com (Click Python tab) 
-	hacerrank.com (Click Python tab) 
+  * codingbat.com (Click Python tab) 
+  * hacerrank.com (Click Python tab) 
 	
 ## WEEK 1
  * Problems https://www.hackerrank.com/domains/python/py-introduction
