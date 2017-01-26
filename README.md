@@ -17,3 +17,5 @@
 7. Event Coordinator 
 8. Philanthropy
 
+## WEEK 2
+ * Download PyCharm IDE https://www.jetbrains.com/pycharm/download/
