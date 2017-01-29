@@ -20,8 +20,8 @@
  	 You need to set your Spotify API credentials. You can do this by
             setting environment variables like so:
 
-            export SPOTIPY_CLIENT_ID='96b5706aae2a49989ed8c0c8ae57004e'
-            export SPOTIPY_CLIENT_SECRET='6d2af12564b34d76b8602fdabf27da89'
+            export SPOTIPY_CLIENT_ID='ID'
+            export SPOTIPY_CLIENT_SECRET='Secret'
             export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback '
 
     * If you get the not a valid identifier error 
