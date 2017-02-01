@@ -6,9 +6,9 @@ import spotipy.util as util
 
 def getTracks(str) :
     sp = spotipy.Spotify()
-    results = sp.search(q=str)
+    results = sp.search(q=str, limit=50)
     for i, t in enumerate(results['tracks']['items']):
-        print(' ', i, t['name'])
+        print i, t['name']
 
 
 
@@ -23,7 +23,7 @@ def showAlbums(str) :
         albums.extend(results['items'])
 
     for album in albums:
-        print(album['name'])
+        print album['name']
 
 def getArtistImage(str) :
     spotify = spotipy.Spotify()
@@ -100,8 +100,19 @@ def showUserPlaylists(str) :
         else:
             print("Can't get token for", str)
 
-# getTracks("Red Hot Chili Pepers")
-# showAlbums("spotify:artist:2WX2uTcsvV5OnS0inACecP")
+
+def getArtistInfo(str) :
+    spotify = spotipy.Spotify()
+    results = spotify.search(q='artist:' + str, type='artist')
+    array = []
+    for item in results['artists']['items'] :
+        array.append(item['uri'])
+        # print item['uri'] ,'\n'
+    return array
+
+artistURI = getArtistInfo("Red Hot Chili Peppers")
+# getTracks("Red Hot Chili Peppers")
+#showAlbums(artistURI[0])
 # getArtistImage("Red Hot Chili Peppers")
 # userSavedTracks("btholmes@iastate.edu")
-showUserPlaylists("btholmes@iastate.edu")
+# showUserPlaylists("btholmes@iastate.edu")
