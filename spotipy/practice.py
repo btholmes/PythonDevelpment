@@ -72,7 +72,7 @@ def show_tracks(tracks):
                                     track['name'])
 
 def showUserPlaylists(str) :
-    if __name__ == '__main__':
+    # if __name__ == '__main__':
         # if len(sys.argv) > 1:
         #     username = sys.argv[1]
         # else:
@@ -110,9 +110,11 @@ def getArtistInfo(str) :
         # print item['uri'] ,'\n'
     return array
 
+
+
 artistURI = getArtistInfo("Red Hot Chili Peppers")
 # getTracks("Red Hot Chili Peppers")
-#showAlbums(artistURI[0])
+showAlbums(artistURI[0])
 # getArtistImage("Red Hot Chili Peppers")
 # userSavedTracks("btholmes@iastate.edu")
 # showUserPlaylists("btholmes@iastate.edu")
