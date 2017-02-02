@@ -1,4 +1,4 @@
-# Python Development Club
+s# Python Development Club
  * Resources
 * [coding bat problems](https://codingbat.com) (Click Python tab) 
 * [hackerrank problems](https://hackerrank.com) (Click Python tab) 
@@ -54,15 +54,15 @@
     cd spotipy   
     sudo npm install 
     
-    **Now we need to set our ClientID, secret, and redirect ID (get these from developer.spotify website)** 
-    export SPOTIPY_CLIENT_ID='96b5706aae2a49989ed8c0c8ae57004e'
-    export SPOTIPY_CLIENT_SECRET='6d2af12564b34d76b8602fdabf27da89'
-    export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
+    **Now we need to set our ClientID, secret, and redirect ID (get these from developer.spotify website)**
+    export SPOTIPY_CLIENT_ID='96b5706aae2a49989ed8c0c8ae57004e'  
+    export SPOTIPY_CLIENT_SECRET='6d2af12564b34d76b8602fdabf27da89'  
+    export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'  
 
   * From here you can just play around try:   
     practice.py contains python code for contacting the Spotify API   
     
-  * If you want to run the NodeJS web app 
+  * If you want to run the NodeJS web app  
     cd authorization_code  
     node app.js (this starts the server)  
     open browser and go to localhost:8888  
