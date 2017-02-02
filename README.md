@@ -21,7 +21,7 @@
  * Download PyCharm IDE https://www.jetbrains.com/pycharm/download/
 
  * GITHUB COMMANDS 
-  * git clone github.com/blah/blah  (This will store a copy of the Github repository on your local machine) 
+  * git clone github.com/username/repository  (This will store a copy of the Github repository on your local machine) 
 	
 	
   * NOW LETS CREATE AND EDIT OUR OWN REPOSITORY
@@ -34,3 +34,11 @@
   * git commit -m "Message" 
   * git push origin master
 	
+## WEEK 3
+ * Create app on developer.spotify.com 
+    Use the clientID and client Secret to operate the API 
+
+ * Tools for learning how to build flask apps 
+    [click here](http://file.allitebooks.com/20150530/Flask%20Web%20Development.pdf)
+    
+ * This week there is 

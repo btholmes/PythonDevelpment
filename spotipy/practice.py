@@ -79,7 +79,6 @@ def showUserPlaylists(str) :
         #     print "Whoops, need your username!"
         #     print "usage: python user_playlists.py [username]"
         #     sys.exit()
-
         token = util.prompt_for_user_token(str)
 
         if token:
@@ -111,10 +110,13 @@ def getArtistInfo(str) :
     return array
 
 
+def main() :
+    # artistURI = getArtistInfo("Red Hot Chili Peppers")
+    # getTracks("Red Hot Chili Peppers")
+    # showAlbums(artistURI[0])
+    # getArtistImage("Red Hot Chili Peppers")
+    # userSavedTracks("btholmes@iastate.edu")
+    showUserPlaylists("btholmes@iastate.edu")
 
-artistURI = getArtistInfo("Red Hot Chili Peppers")
-# getTracks("Red Hot Chili Peppers")
-showAlbums(artistURI[0])
-# getArtistImage("Red Hot Chili Peppers")
-# userSavedTracks("btholmes@iastate.edu")
-# showUserPlaylists("btholmes@iastate.edu")
+if __name__ == "__main__" :
+    main()
