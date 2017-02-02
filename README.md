@@ -59,23 +59,23 @@
     export SPOTIPY_CLIENT_SECRET='6d2af12564b34d76b8602fdabf27da89'
     export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
 
-  * From here you can just play around try: 
-    practice.py contains python code for contacting the Spotify API 
+  * From here you can just play around try:   
+    practice.py contains python code for contacting the Spotify API   
     
   * If you want to run the NodeJS web app 
-    cd authorization_code 
-    node app.js (this starts the server) 
-    open browser and go to localhost:8888
-    Log in, then click the 'show playlist' button to see your spotify playlist 
+    cd authorization_code  
+    node app.js (this starts the server)  
+    open browser and go to localhost:8888  
+    Log in, then click the 'show playlist' button to see your spotify playlist  
 
   * If you want to see the Flask Boiler 
-    cd SpotifyFlaskBoiler
-    source venv/bin/activate (start the virtual env) 
-    python app.py 
-    open browser and go to localhost:5000
-    **Should see all JSON response from Spotify API**
-    This resonse contains 50 of your saved music items from Spotify 
-    just run deactivate to stop the virtual env 
+    cd SpotifyFlaskBoiler  
+    source venv/bin/activate (start the virtual env)  
+    python app.py  
+    open browser and go to localhost:5000  
+    **Should see all JSON response from Spotify API**  
+    This resonse contains 50 of your saved music items from Spotify  
+    just run deactivate to stop the virtual env  
 
 
 
