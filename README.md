@@ -1,4 +1,4 @@
-s# Python Development Club
+# Python Development Club
  * Resources
 * [coding bat problems](https://codingbat.com) (Click Python tab) 
 * [hackerrank problems](https://hackerrank.com) (Click Python tab) 
