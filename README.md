@@ -1,11 +1,11 @@
 # Python Development Club
  * Resources
-  * codingbat.com (Click Python tab) 
-  * hackerrank.com (Click Python tab) 
+* [coding bat problems](https://codingbat.com) (Click Python tab) 
+* [hackerrank problems](https://hackerrank.com) (Click Python tab) 
 	
 ## WEEK 1
- * Problems https://www.hackerrank.com/domains/python/py-introduction
- * Solutions https://github.com/arsho/Hackerrank_Python_Domain_Solutions/tree/master/Introduction
+* Problems [hackerrank problems](https://www.hackerrank.com/domains/python/py-introduction)
+ * Solutions [hackerrank solutions](https://github.com/arsho/Hackerrank_Python_Domain_Solutions/tree/master/Introduction)
  
 ## POSITIONS FOR ELECTIONS 
 1. Campus Liaison
