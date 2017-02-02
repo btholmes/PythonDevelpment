@@ -51,7 +51,7 @@ app.get('/login', function(req, res) {
 
   // your application requests authorization
   // Link with all scope options for more info https://developer.spotify.com/web-api/using-scopes/
-  var scope = 'user-read-private user-read-email user-library-read';
+  var scope = 'user-read-private user-read-email';
 
   // res.redirect("https://accounts.spotify.com/en/authorize?response_type=code&client_id=96b5706aae2a49989ed8c0c8ae57004e&scope=user-read-private%20user-read-email&redirect_uri=http:%2F%2Flocalhost:8888%2Fcallback&state=02EWrJOX9mZjm7CD");
   // The one above and below are the same thing
@@ -71,6 +71,7 @@ app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
+  console.log("app.get callback ");
 
   var code = req.query.code || null;
   var state = req.query.state || null;
@@ -155,27 +156,32 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+
+//          This is how the shell command would look
+//          curl -X GET "https://api.spotify.com/v1/me/tracks" -H "Authorization: Bearer {your access token}"
 app.get('/get_music', function(req, res) {
 
-  var refresh_token = req.query.refresh_token;
+  var access_token = req.query.access_token;
+
   var authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
-    form: {
-      grant_type: 'refresh_token',
-      refresh_token: refresh_token
+    url: 'https://api.spotify.com/v1/me/tracks',
+      headers: {
+        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
     },
     json: true
   };
 
   request.post(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      var access_token = body.access_token;
+    // console.log("in post : " + JSON.stringify(body));
+    if (!error) {
       res.send({
-        'access_token': access_token
+        'data' : body
       });
+    }else {
+      console.log("error in post ");
     }
   });
+
 });
 
 console.log('Listening on 8888');
