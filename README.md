@@ -51,7 +51,7 @@
     Make sure Python, and nodeJS are installed, then.
 
     git clone https://github.com/btholmes/PythonDevelpment.git  
-    cd spotipy 
+    cd spotipy   
     sudo npm install 
     
     **Now we need to set our ClientID, secret, and redirect ID (get these from developer.spotify website)** 
