@@ -50,7 +50,7 @@
     All the code contains comments, so it should be easy to follow. 
     Make sure Python, and nodeJS are installed, then.
 
-    git clone https://github.com/btholmes/PythonDevelpment.git
+    git clone https://github.com/btholmes/PythonDevelpment.git \  
     cd spotipy 
     sudo npm install 
     
