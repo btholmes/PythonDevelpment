@@ -177,7 +177,7 @@ app.get('/get_music', function(req, res) {
       res.send({
         'data' : body
       });
-    }else {
+    }else {export SPOTIPY_CLIENT_ID='ID'
       console.log("error in post ");
     }
   });
