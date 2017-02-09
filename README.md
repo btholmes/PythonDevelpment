@@ -82,7 +82,7 @@
  * Today we worked with render_template from the Flask import. 
   * Display html content with variables populated on the fly
      
-        return render_template("index.html", htmlVar1 = newData1, htmlVar2 = newData2, etc..)
+        	return render_template("index.html", htmlVar1 = newData1, htmlVar2 = newData2, etc..)
 
  * Example index.html 
  	
