@@ -6,10 +6,11 @@ import urllib
 import sys
 import spotipy.util as util
 
-from flask import Flask, request, redirect, render_template, session
+from flask import Flask, request, redirect, render_template, session, send_file
 from string import Template
 app = Flask(__name__)
 
+# NEED this random whatever string for sessions
 app.secret_key = 'AZWSXEDC7654321asdf'
 
 #  Client Keys
@@ -45,32 +46,34 @@ auth_query_parameters = {
 
 @app.route('/')
 def hello():
-    url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
-    auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
-    return redirect(auth_url)
+    return send_file("/templates/index.html")
+    # url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
+    # auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
+    # return redirect(auth_url)
 
 
 
 @app.route("/callback")
 def callback():
 
-    # Auth Step 4: Requests refresh and access tokens
-    auth_token = request.args['code']
-    code_payload = {
-        "grant_type": "authorization_code",
-        "code": str(auth_token),
-        "redirect_uri": REDIRECT_URI
-    }
-    base64encoded = base64.b64encode("{}:{}".format(CLIENT_ID, CLIENT_SECRET))
-    headers = {"Authorization": "Basic {}".format(base64encoded)}
-    post_request = requests.post(SPOTIFY_TOKEN_URL, data=code_payload, headers=headers)
+    if(session.get('access_token') != True) :
+        # Auth Step 4: Requests refresh and access tokens
+        auth_token = request.args['code']
+        code_payload = {
+            "grant_type": "authorization_code",
+            "code": str(auth_token),
+            "redirect_uri": REDIRECT_URI
+        }
+        base64encoded = base64.b64encode("{}:{}".format(CLIENT_ID, CLIENT_SECRET))
+        headers = {"Authorization": "Basic {}".format(base64encoded)}
+        post_request = requests.post(SPOTIFY_TOKEN_URL, data=code_payload, headers=headers)
 
-    # Auth Step 5: Tokens are Returned to Application
-    response_data = json.loads(post_request.text)
-    session['access_token'] = response_data["access_token"]
-    session['refresh_token'] = response_data["refresh_token"]
-    session['token_type'] = response_data["token_type"]
-    session['expires_in'] = response_data["expires_in"]
+        # Auth Step 5: Tokens are Returned to Application
+        response_data = json.loads(post_request.text)
+        session['access_token'] = response_data["access_token"]
+        session['refresh_token'] = response_data["refresh_token"]
+        session['token_type'] = response_data["token_type"]
+        session['expires_in'] = response_data["expires_in"]
 
     # Auth Step 6: Use the access token to access Spotify API
     authorization_header = {"Authorization":"Bearer {}".format(session['access_token'])}
@@ -93,8 +96,6 @@ def callback():
     profileName = profile_data['display_name']
     profileEmail = profile_data['email']
 
-
-
     return render_template("index.html",sorted_array=playlist_data["items"], image=profileImage, name=profileName, email=profileEmail, data=profile_data)
 
 @app.route('/tracks', methods=['GET', 'POST'])
@@ -111,4 +112,4 @@ def getTracks():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=PORT)
+    app.run(host='0.0.0.0',debug=True, port=PORT)
