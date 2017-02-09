@@ -7,6 +7,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+
+
     <h1 class = "text-primary text-center">My Playlists</h1>
 
     <p>{{ data }}</p>
@@ -55,7 +57,8 @@
             dataType: "html",
             success: function(msg) {
                 console.log(JSON.stringify(msg));
-                $("#"+id+"tracks").html("Test value");
+                msg = JSON.parse(msg);
+                $("#"+id+"tracks").html(msg);
             },
             error: function (xhr, status, error) {
                 console.log(error);

@@ -6,10 +6,11 @@ import urllib
 import sys
 import spotipy.util as util
 
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, session
 from string import Template
 app = Flask(__name__)
 
+app.secret_key = 'AZWSXEDC7654321asdf'
 
 #  Client Keys
 CLIENT_ID = "96b5706aae2a49989ed8c0c8ae57004e"
@@ -42,8 +43,6 @@ auth_query_parameters = {
 }
 
 
-authorization_header = "";
-
 @app.route('/')
 def hello():
     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
@@ -68,13 +67,13 @@ def callback():
 
     # Auth Step 5: Tokens are Returned to Application
     response_data = json.loads(post_request.text)
-    access_token = response_data["access_token"]
-    refresh_token = response_data["refresh_token"]
-    token_type = response_data["token_type"]
-    expires_in = response_data["expires_in"]
+    session['access_token'] = response_data["access_token"]
+    session['refresh_token'] = response_data["refresh_token"]
+    session['token_type'] = response_data["token_type"]
+    session['expires_in'] = response_data["expires_in"]
 
     # Auth Step 6: Use the access token to access Spotify API
-    authorization_header = {"Authorization":"Bearer {}".format(access_token)}
+    authorization_header = {"Authorization":"Bearer {}".format(session['access_token'])}
 
     # Get profile data
     user_profile_api_endpoint = "{}/me".format(SPOTIFY_API_URL)
@@ -100,11 +99,15 @@ def callback():
 
 @app.route('/tracks', methods=['GET', 'POST'])
 def getTracks():
+
+    # Auth Step 6: Use the access token to access Spotify API
+    authorization_header = {"Authorization":"Bearer {}".format(session['access_token'])}
     playlist_tracks_endpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks".format(user_id="spotify_netherlands",playlist_id="3r8ok7gRfb23XIQTZ3ttOK")
-    print "Header is " + authorization_header
+    # print "Header is, token is " + json.dumps(authorization_header) + "," + json.dumps(session['access_token'])
     tracks_response = requests.get("https://api.spotify.com/v1/users/spotify_netherlands/playlists/3r8ok7gRfb23XIQTZ3ttOK/tracks", headers=authorization_header)
     tracks = json.loads(tracks_response.text);
-    return json.dumps(tracks);
+    # print "tracks is " + json.dumps(tracks)
+    return json.dumps(tracks)
 
 
 if __name__ == '__main__':
