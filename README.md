@@ -85,42 +85,42 @@
 
  * Example index.html 
 		<html>
-<!-- Bootstrap Requirements -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!--                        -->
+		<!-- Bootstrap Requirements -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!--                        -->
 
-    <h1 class = "text-primary text-center">My Playlists</h1>
+    			<h1 class = "text-primary text-center">My Playlists</h1>
 
-        <p>{{ data }}</p>
-        <br>
-        {% if image and name and email %}
-            <img src = "{{ image }}">
-            <p><b>Name : </b>{{ name }}</p>
-            <p><b>Email : </b>{{ email }}</p>
-        {% endif %}
+        		<p>{{ data }}</p>
+       			 <br>
+       			 {% if image and name and email %}
+      			      <img src = "{{ image }}">
+      			      <p><b>Name : </b>{{ name }}</p>
+      			      <p><b>Email : </b>{{ email }}</p>
+     			   {% endif %}
 
-    {% for item in sorted_array %}
-        <div class = "row">
-            <div class = "col-md-5">
-                <img src = "{{ item['images'][0]['url'] }}">
-            </div>
-            <div class = "col-md-7">
-                <div class = "row">
-                    <button onclick = "showTracks()" data = "{{ item.owner.id }}" class = "btn btn-success">
-                        View Tracks
-                    </button>
-                </div>
-                <div class = "hide row" id = "{{ item.owner.id }}">
-                <br>
-                <h4 class = "text-info">Playlist Tracks</h4>
-                    <div id = "{{ item.owner.id }}tracks">
+    			{% for item in sorted_array %}
+   			     <div class = "row">
+   				         <div class = "col-md-5">
+			                <img src = "{{ item['images'][0]['url'] }}">
+			            </div>
+ 			           <div class = "col-md-7">
+  			              <div class = "row">
+  			                  <button onclick = "showTracks()" data = "{{ item.owner.id }}" class = "btn btn-success">
+   			                     View Tracks
+   			                 </button>
+    			            </div>
+    			            <div class = "hide row" id = "{{ item.owner.id }}">
+   			             <br>
+    			            <h4 class = "text-info">Playlist Tracks</h4>
+   			                 <div id = "{{ item.owner.id }}tracks">
     
-                    </div>
-                </div>
-            </div>
-        </div>
+    			                </div>
+   			             </div>
+   			         </div>
+   			     </div>
 
         <p>{{ item['href'] }}</p>
         <p> {{ item }} </p>
