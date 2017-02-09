@@ -41,6 +41,10 @@ auth_query_parameters = {
     "client_id": CLIENT_ID
 }
 
+# Authorization header
+global authorization_header;
+
+
 
 @app.route('/')
 def hello():
@@ -52,6 +56,7 @@ def hello():
 
 @app.route("/callback")
 def callback():
+
     # Auth Step 4: Requests refresh and access tokens
     auth_token = request.args['code']
     code_payload = {
@@ -84,8 +89,25 @@ def callback():
     playlist_data = json.loads(playlists_response.text)
 
     # Combine profile and playlist data to display
-    display_arr = [profile_data] + playlist_data["items"]
-    return render_template("index.html",sorted_array=display_arr)
+    # display_arr = [profile_data] + playlist_data["items"]
+
+
+    profileImage = profile_data['images'][0]['url']
+    profileName = profile_data['display_name']
+    profileEmail = profile_data['email']
+
+
+
+    return render_template("index.html",sorted_array=playlist_data["items"], image=profileImage, name=profileName, email=profileEmail, data=profile_data)
+
+@app.route('/tracks', methods=['GET', 'POST'])
+def getTracks():
+    # Get tracks from playlists
+    playlist_tracks_endpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks".format(user_id="spotify_netherlands",playlist_id="3r8ok7gRfb23XIQTZ3ttOK")
+    tracks_response = requests.get("https://api.spotify.com/v1/users/spotify_netherlands/playlists/3r8ok7gRfb23XIQTZ3ttOK/tracks", headers=authorization_header)
+    tracks = json.loads(tracks_response.text);
+    return json.dumps(tracks);
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)
