@@ -78,5 +78,68 @@
     just run deactivate to stop the virtual env  
 
 
+## WEEK 4
+ * Today we worked with render_template from the Flask import. 
+  * Display html content with variables populated on the fly
+     return render_template("index.html", htmlVar1 = newData1, htmlVar2 = newData2, etc..)
 
+ * Example index.html 
+<html>
+<!-- Bootstrap Requirements -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--                        -->
+
+    <h1 class = "text-primary text-center">My Playlists</h1>
+
+        <p>{{ data }}</p>
+        <br>
+        {% if image and name and email %}
+            <img src = "{{ image }}">
+            <p><b>Name : </b>{{ name }}</p>
+            <p><b>Email : </b>{{ email }}</p>
+        {% endif %}
+
+    {% for item in sorted_array %}
+        <div class = "row">
+            <div class = "col-md-5">
+                <img src = "{{ item['images'][0]['url'] }}">
+            </div>
+            <div class = "col-md-7">
+                <div class = "row">
+                    <button onclick = "showTracks()" data = "{{ item.owner.id }}" class = "btn btn-success">
+                        View Tracks
+                    </button>
+                </div>
+                <div class = "hide row" id = "{{ item.owner.id }}">
+                <br>
+                <h4 class = "text-info">Playlist Tracks</h4>
+                    <div id = "{{ item.owner.id }}tracks">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>{{ item['href'] }}</p>
+        <p> {{ item }} </p>
+
+    {% endfor %}
+
+ * Example app.py 
+
+        @app.route('/tracks', methods=['GET', 'POST'])
+        def getTracks():
+            imgVar = "link"
+            nameVar="Music"
+            emailVar="username@me.com"
+            dateVar="2012-02-32 00-00-0000"
+            
+            playlist_tracks_endpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks".format(user_id="spotify_netherlands",playlist_id="3r8ok7gRfb23XIQTZ3ttOK")
+            print "Header is " + authorization_header
+            tracks_response = requests.get("URL", headers=headers)
+            tracks = json.loads(tracks_response.text);
+
+            return render_template("index.html",sorted_array=tracks["items"], image=imgVar, name=nameVar, email=emailVar, data=dateVar)
 

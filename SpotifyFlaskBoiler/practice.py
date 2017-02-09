@@ -115,8 +115,8 @@ def main() :
     # getTracks("Red Hot Chili Peppers")
     # showAlbums(artistURI[0])
     # getArtistImage("Red Hot Chili Peppers")
-    userSavedTracks("btholmes@iastate.edu")
-    # showUserPlaylists("btholmes@iastate.edu")
+    # userSavedTracks("btholmes@iastate.edu")
+    showUserPlaylists("btholmes@iastate.edu")
 
 if __name__ == "__main__" :
     main()

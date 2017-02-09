@@ -41,10 +41,8 @@ auth_query_parameters = {
     "client_id": CLIENT_ID
 }
 
-# Authorization header
-global authorization_header;
 
-
+authorization_header = "";
 
 @app.route('/')
 def hello():
@@ -102,8 +100,8 @@ def callback():
 
 @app.route('/tracks', methods=['GET', 'POST'])
 def getTracks():
-    # Get tracks from playlists
     playlist_tracks_endpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks".format(user_id="spotify_netherlands",playlist_id="3r8ok7gRfb23XIQTZ3ttOK")
+    print "Header is " + authorization_header
     tracks_response = requests.get("https://api.spotify.com/v1/users/spotify_netherlands/playlists/3r8ok7gRfb23XIQTZ3ttOK/tracks", headers=authorization_header)
     tracks = json.loads(tracks_response.text);
     return json.dumps(tracks);
