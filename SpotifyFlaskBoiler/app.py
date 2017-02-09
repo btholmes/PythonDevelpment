@@ -1,70 +1,91 @@
 import spotipy
 import json
+import requests
+import base64
+import urllib
 import sys
 import spotipy.util as util
 
-from flask import Flask
+from flask import Flask, request, redirect, render_template
 from string import Template
 app = Flask(__name__)
 
-mePage = Template("""
-   <h1>This is the me page template for ${name}</h1>
-""")
+
+#  Client Keys
+CLIENT_ID = "96b5706aae2a49989ed8c0c8ae57004e"
+CLIENT_SECRET = "fb4c0a64cb074b25bcb28a4787c4007b"
+
+# Spotify URLS
+SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
+SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
+SPOTIFY_API_BASE_URL = "https://api.spotify.com"
+API_VERSION = "v1"
+SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
+
+
+# Server-side Parameters
+CLIENT_SIDE_URL = "http://127.0.0.1"
+PORT = 5000
+REDIRECT_URI = "{}:{}/callback".format(CLIENT_SIDE_URL, PORT)
+SCOPE = "playlist-modify-public playlist-modify-private"
+STATE = ""
+SHOW_DIALOG_bool = True
+SHOW_DIALOG_str = str(SHOW_DIALOG_bool).lower()
+
+auth_query_parameters = {
+    "response_type": "code",
+    "redirect_uri": REDIRECT_URI,
+    "scope": SCOPE,
+    # "state": STATE,
+    # "show_dialog": SHOW_DIALOG_str,
+    "client_id": CLIENT_ID
+}
 
 
 @app.route('/')
 def hello():
-    # return "Hello World!"
-    # sp = spotipy.Spotify()
-    # results = sp.search(q="Red Hot Chili Peppers", limit=50)
-    # music = "Default"
-    # for i, t in enumerate(results['tracks']['items']):
-    #     music += str(i) +  "  " + t['name']
-    #     # print i, t['name']
-    # return json.dumps(results)
-    def show_tracks(tracks):
-        for i, item in enumerate(tracks['items']):
-            track = item['track']
-            print "   %d %32.32s %s" % (i, track['artists'][0]['name'],
-                                        track['name'])
-    def showUserPlaylists(str) :
-        # if __name__ == '__main__':
-        # if len(sys.argv) > 1:
-        #     username = sys.argv[1]
-        # else:
-        #     print "Whoops, need your username!"
-        #     print "usage: python user_playlists.py [username]"
-        #     sys.exit()
-        token = util.prompt_for_user_token(str)
-
-        if token:
-            sp = spotipy.Spotify(auth=token)
-            playlists = sp.user_playlists(str)
-            for playlist in playlists['items']:
-                if playlist['owner']['id'] == str:
-                    print
-                    print playlist['name']
-                    print '  total tracks', playlist['tracks']['total']
-                    results = sp.user_playlist(str, playlist['id'],
-                                               fields="tracks,next")
-                    tracks = results['tracks']
-                    show_tracks(tracks)
-                    while tracks['next']:
-                        tracks = sp.next(tracks)
-                        show_tracks(tracks)
-        else:
-            print("Can't get token for", str)
-    showUserPlaylists("btholmes@iastate.edu")
+    url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
+    auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
+    return redirect(auth_url)
 
 
-@app.route('/callback')
-def callback() :
-    return "<h1>Callback</h1>"
 
-@app.route('/me')
-def me():
-   name = "BenItWorked"
-   return mePage.substitute(name=name)
+@app.route("/callback")
+def callback():
+    # Auth Step 4: Requests refresh and access tokens
+    auth_token = request.args['code']
+    code_payload = {
+        "grant_type": "authorization_code",
+        "code": str(auth_token),
+        "redirect_uri": REDIRECT_URI
+    }
+    base64encoded = base64.b64encode("{}:{}".format(CLIENT_ID, CLIENT_SECRET))
+    headers = {"Authorization": "Basic {}".format(base64encoded)}
+    post_request = requests.post(SPOTIFY_TOKEN_URL, data=code_payload, headers=headers)
+
+    # Auth Step 5: Tokens are Returned to Application
+    response_data = json.loads(post_request.text)
+    access_token = response_data["access_token"]
+    refresh_token = response_data["refresh_token"]
+    token_type = response_data["token_type"]
+    expires_in = response_data["expires_in"]
+
+    # Auth Step 6: Use the access token to access Spotify API
+    authorization_header = {"Authorization":"Bearer {}".format(access_token)}
+
+    # Get profile data
+    user_profile_api_endpoint = "{}/me".format(SPOTIFY_API_URL)
+    profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
+    profile_data = json.loads(profile_response.text)
+
+    # Get user playlist data
+    playlist_api_endpoint = "{}/playlists".format(profile_data["href"])
+    playlists_response = requests.get(playlist_api_endpoint, headers=authorization_header)
+    playlist_data = json.loads(playlists_response.text)
+
+    # Combine profile and playlist data to display
+    display_arr = [profile_data] + playlist_data["items"]
+    return render_template("index.html",sorted_array=display_arr)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=PORT)
