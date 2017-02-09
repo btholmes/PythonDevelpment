@@ -143,3 +143,21 @@
 
             return render_template("index.html",sorted_array=tracks["items"], image=imgVar, name=nameVar, email=emailVar, data=dateVar)
 
+## For the Angular Flask Spotify BoilerPlate
+ * Start virtual env
+
+            source venv/bin/activate
+            sudo pip install -r requirements.txt
+
+ * Start python server 
+
+            cd api
+            python app.py
+
+ * Open a different terminal, and start Angular stuff
+
+            cd angular/for/flask
+            sudo npm install
+            bower install bootstrap
+            sudo npm start  (Then go to localhost:8000)
+
