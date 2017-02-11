@@ -46,10 +46,10 @@ auth_query_parameters = {
 
 @app.route('/')
 def hello():
-    return send_file("/templates/index.html")
-    # url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
-    # auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
-    # return redirect(auth_url)
+    # return send_file("/templates/index.html")
+    url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
+    auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
+    return redirect(auth_url)
 
 
 
