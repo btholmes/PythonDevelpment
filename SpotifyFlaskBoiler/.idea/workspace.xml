@@ -153,7 +153,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../AnalyticsWork/PBAnalytics" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="FullScreen" value="true" />
@@ -963,12 +963,12 @@
       <workItem from="1486668185472" duration="157000" />
       <workItem from="1486668426625" duration="537000" />
       <workItem from="1486669444019" duration="10737000" />
-      <workItem from="1486702003283" duration="1322000" />
+      <workItem from="1486702003283" duration="1446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50573000" />
+    <option name="totallyTimeSpent" value="50697000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
