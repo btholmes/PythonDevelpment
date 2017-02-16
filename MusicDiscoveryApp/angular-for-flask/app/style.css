@@ -1,0 +1,90 @@
+.navStuff {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+
+}
+
+.mt35 {
+    margin-top: 35px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.ml40{
+    margin-left: 40%;
+}
+
+/*LOADING icon stuff*/
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    display: none;
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*END Loading bar stuff*/
+
+/*PORTFOLIO CARDS*/
+
+
+.single-item {
+    text-align: center;
+    margin-top: 2em;
+}
+.item-image {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    vertical-align: middle;
+    position: relative;
+    top: 20px;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    border-radius: 30px;
+    color: #000;
+    opacity: 0.9;
+    transition: 0.5s ease-in-out;
+}
+.card:hover {
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.single-item-title {
+    font-weight: 700;
+    margin: 1em auto .5em;
+}
+
+small.text {
+    font-size: .6em;
+    color: #000;
+    opacity: .5;
+}

@@ -1,0 +1,14 @@
+<div class = "col-md-5" ng-repeat = "item in playlists">
+
+
+
+    <div class="single-item text-center">
+        <div class="item-image">
+            <a  ng-click="goToPlaylist($event)"><img id={{item['tracks']['href']}}  class="card" src={{item['images'][0]['url']}} ></a>
+        </div>
+        <h2 class="single-item-title">
+            {{item.name}}
+        </h2>
+
+    </div>
+</div>

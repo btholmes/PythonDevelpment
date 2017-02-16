@@ -1,0 +1,63 @@
+<html ng-app = "myApp">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{#    <!--LOAD ANGULAR AND UI ROUTER-->#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>#}
+{#    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>#}
+
+{#    <!--ALL CONTROLLERS AND SERVICES-->#}
+{#    <script src="../static/app.js"></script>#}
+{#    <!--<script src="../static/mainCtrl.js"></script>-->#}
+{#    <script src = "../static/homeCtrl.js"></script>#}
+
+</head>
+
+    <body>
+    {% raw %}
+    <h1 class = "text-primary text-center">Account Information </h1>
+    <a href = "http://127.0.0/1:8000/app/#/home">Click here</a>
+    {% endraw %}
+
+    <p>{{ data }}</p>
+    <br>
+    {% if image and name and email %}
+        <img src = "{{ image }}">
+        <p><b>Name : </b>{{ name }}</p>
+        <p><b>Email : </b>{{ email }}</p>
+    {% endif %}
+
+    {% for item in sorted_array %}
+        <div class = "row">
+            <div class = "col-md-5">
+                <img src = "{{ item['images'][0]['url'] }}">
+            </div>
+            <div class = "col-md-7">
+                <div class = "row">
+                    <button ng-click = "showTracks()" data = "{{ item.owner.id }}" class = "btn btn-success">View Tracks</button>
+                </div>
+                <div class = "hide row" id = "{{ item.owner.id }}">
+                    <br>
+                    <h4 class = "text-info">Playlist Tracks</h4>
+                    <div id = "{{ item.owner.id }}tracks">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <p>{{ item['href'] }}</p>
+        <p> {{ item }} </p>
+
+    {% endfor %}
+
+    </body>
+
+</html>
