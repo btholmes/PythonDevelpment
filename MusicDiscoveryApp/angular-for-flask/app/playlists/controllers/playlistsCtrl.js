@@ -24,9 +24,11 @@
                 // console.log(JSON.stringify(data.data));
 
                 $scope.playlists = data.data['items'];
+                // console.log(JSON.stringify($scope.playlists));
                 $(".loader").fadeOut();
             });
         }
+
 
         $scope.goToPlaylist = function(event) {
             var tracksUrl = event.target.id;

@@ -63,12 +63,12 @@ def eraseCredentials() :
         text_file.write("")
 
 def getUserTracks(authorization_header, limit, offset) :
-    payload = {
+    query_params = {
         'limit' : limit,
         'offset' : offset
     }
     tracks_api_endpoint = "https://api.spotify.com/v1/me/tracks"
-    tracks_response = requests.get(tracks_api_endpoint, data=payload, headers=authorization_header)
+    tracks_response = requests.get(tracks_api_endpoint, params=query_params, headers=authorization_header)
     tracks_data = json.loads(tracks_response.text)
     return tracks_data["items"] if len(tracks_data["items"]) > 0 else False
 

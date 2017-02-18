@@ -19,7 +19,25 @@
         $scope.init = function() {
             var data = JSON.parse($stateParams.urlParam);
             $scope.tracksData = data['items'];
+            console.log(JSON.stringify($scope.tracksData));
         }
+
+        // var list = {"you": 100, "me": 75, "foo": 116, "bar": 15};
+        // keysSorted = Object.keys(list).sort(function(a,b){return list[a]-list[b]})
+
+
+        // $scope.sortByArtist = function(a, b) {
+        //     return a-b;
+        // }
+        //
+        // $scope.sortBySong = function() {
+        //     alert("new sort song");
+        //    Object.keys($scope.tracksData).sort(function(a,b){
+        //        return $scope.tracksData[a]['track']['name'] - $scope.tracksData[b]['track']['name'];
+        //    });
+        // }
+
+
 
         $scope.pageTurn = function() {
 

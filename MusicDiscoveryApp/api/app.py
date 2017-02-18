@@ -146,9 +146,11 @@ def getPlaylists():
 @app.route('/discover_all', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
 def discoverAll():
+    # This function gets all users saved tracks, find the artists, and returns a dictionary of all artists, sorted by
+    # artists with the most songs in the users saved tracks
     # Get Header
     allData = []
-    count = 0;
+    count = 0
     ArtistDict = {}
     data = getUserToken()
     data = json.loads(data)
@@ -158,27 +160,55 @@ def discoverAll():
         'limit' : 50,
         'offset' : count
     }
-    get_request = requests.get("https://api.spotify.com/v1/me/tracks", data=query_params, headers=authorization_header)
+    get_request = requests.get("https://api.spotify.com/v1/me/tracks", params=query_params, headers=authorization_header)
     tracks = json.loads(get_request.text)
-    tracks = tracks['items']
-    allData.append(tracks)
+    tracksData = tracks['items']
+    allData.append(tracksData)
     total = tracks['total']
     count += 50
 
-    # while count < total :
-    #     query_params = {
-    #         'limit' : 50,
-    #         'offset' : count
-    #     }
-    #     get_request = requests.get("https://api.spotify.com/v1/me/tracks", data=query_params, headers=authorization_header)
-    #     tracks = json.loads(get_request.text)
-    #     tracks = tracks['items']
-    #     allData.append(tracks)
-    #     count += 50
+    while count < total :
+        query_params = {
+            'limit' : 50,
+            'offset' : count
+        }
+        get_request = requests.get("https://api.spotify.com/v1/me/tracks", params=query_params, headers=authorization_header)
+        tracks = json.loads(get_request.text)
+        tracks = tracks['items']
+        allData.append(tracks)
+        count += 50
 
-    # return len(allData)
-    return "test"
+    artistDict = {}
+    for item in allData :
+        for data in item :
+            for artist in data['track']['album']['artists'] :
+                name = artist['name']
+                id = artist['id']
+                if name in artistDict :
+                    artistDict[name]['count'] += 1
+                else :
+                    artistDict[name] = {'count':1, 'id': id}
 
+    # Sorts in descending order
+    # artistDict = sorted(artistDict, key=artistDict.get, reverse=True)
+
+
+    # Now get top 10 tracks for all these artists id's
+
+    # GET https://api.spotify.com/v1/artists/{id}/top-tracks
+    top_tracks = []
+    for artist in artistDict :
+        query_params = {
+            'country' : "US"
+        }
+        artist_request = requests.get("https://api.spotify.com/v1/artists/{}/top-tracks".format(artistDict[artist]['id']), params=query_params, headers=authorization_header)
+        tracks = json.loads(artist_request.text)
+        top_tracks.append(tracks)
+
+    return json.dumps(top_tracks)
+
+    # return json.dumps(artistDict)
+    # return json.dumps(tracksData)
 
 
 @app.route('/add_playlist', methods=['GET', 'POST', 'OPTIONS'])
