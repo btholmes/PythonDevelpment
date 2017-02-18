@@ -1,1 +1,19 @@
-<h1>{{ name }}</h1>
+<h1 class = "text-center">{{ name }}</h1>
+<button class = "btn btn-success" ng-click="discoverAllArtists()">Discover From All Artists</button>
+<p>This page searches through all user's saved tracks, puts the artist name in a dictionary, counts the tracks by each
+artist, and then searches for new music by each artist (new < 3years) and shows the results of all new releases by each artist,
+    organized by artist with most songs at top
+</p>
+<br>
+<p>
+    This function sorts a python dictionary by values in descending order
+</p>
+<p>
+    a1 = {'a':1, 'b':13, 'd':4, 'c':2, 'e':30}
+    <br>
+    a1_sorted_keys = sorted(a1, key=a1.get, reverse=True)
+    <br>
+    for r in a1_sorted_keys:
+    <br>
+    print r, a1[r]
+</p>

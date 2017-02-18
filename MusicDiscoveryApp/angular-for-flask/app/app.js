@@ -24,7 +24,8 @@ myApp.config(function($stateProvider, $urlRouterProvider){
           controller: 'tracksCtrl',
           params : {
               urlParam: null,
-              name: null
+              name: null,
+              thisUrl: null
           },
           templateUrl : 'playlists/views/tracks.html'
       })

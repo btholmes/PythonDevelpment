@@ -1,22 +1,25 @@
-<div class = "text-center">
-    <h1 class = "text-primary">This is the callback page</h1>
+<div>
+    <h1 class = "text-center text-success">Welcome {{ name }}</h1>
 
-    <button ng-click = "getTracks()" class = "btn btn-primary btn-success">Get Tracks</button>
-    <button ng-click = "refreshToken()" class = "btn btn-primary btn-success">Refresh Token</button>
+<!--    <button ng-click = "refreshToken()" class = "btn btn-primary btn-success">Refresh Token</button>
 
     <div id = "newAccess"></div>
+-->
 
-
-    <div id = "userInfo" ng-repeat="item in userData">
+    <div id = "userInfo">
 
         <div class = "row">
             <div class = "col-md-4">
-                {{ item.name }}
+                <img src="{{ imgUrl }}">
             </div>
-            <div class = "col-md-8">
-                <img src="{{ item.images[0].url }}">
+            <div class = "row">
+                <div class = "col-md-8">
+                    <p><b>Country: </b> {{ country }}</p>
+                    <p><b>Email: </b>{{ email }}</p>
+                </div>
             </div>
         </div>
+
 
     </div>
 

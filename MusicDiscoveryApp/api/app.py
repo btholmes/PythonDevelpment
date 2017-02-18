@@ -65,13 +65,27 @@ def callback():
     # STORE user info in a text file so we can reuse it
     storeUserInfo(session['access_token'], session['refresh_token'], session['token_type'], session['expires_in'] )
 
-    return redirect("http://localhost:8000/app/#/playlists")
+    return redirect("http://localhost:8000/app/#/callback")
+
+
+@app.route('/user_info', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def userInfo() :
+    # Gets all the user's information to display on the home page
+    data = getUserToken()
+    data = json.loads(data)
+    access_token = data['access_token']
+    authorization_header = {"Authorization":"Bearer {}".format(access_token)}
+
+    info_response = requests.get("https://api.spotify.com/v1/me", headers=authorization_header)
+    info = json.loads(info_response.text)
+    return json.dumps(info)
+
 
 @app.route('/tracks', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
 def getTracks() :
-    # user_id = "spotify_netherlands"
-    # playlist_id = "3r8ok7gRfb23XIQTZ3ttOK"
+    # This method only gets the tracks for the current playlist
 
     url = request.args['url']
 
@@ -86,6 +100,29 @@ def getTracks() :
 
     tracks = json.loads(tracks_response.text);
     return json.dumps(tracks)
+
+@app.route('/delete_track', methods=['GET', 'POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def deleteTrack() :
+
+    urlPlaylistToDeleteFrom = request.args['url']
+    track_uri = request.args['uri']
+    index = request.args['pos']
+    print("in app.py, uri and index is  " + str(track_uri) + "   " + str(index))
+
+    userInfo = getUserToken()
+    userInfo = json.loads(userInfo)
+    access_token = userInfo['access_token']
+    authorization_header = {
+        # These are requirements to delete a track
+        "Authorization":"Bearer {}".format(access_token) ,
+        "Content-Type" : "application/json"
+    }
+    tracksData = json.dumps({"tracks": [{ "uri" : track_uri, "positions": [int(index)] }] })
+    delete_response = requests.delete(urlPlaylistToDeleteFrom, headers=authorization_header, data=tracksData)
+
+    deleteObj = json.loads(delete_response.text)
+    return json.dumps(deleteObj)
 
 
 @app.route('/playlists', methods=['GET', 'POST', 'OPTIONS'])
@@ -105,6 +142,70 @@ def getPlaylists():
     profile_data = json.loads(profile_response.text)
 
     return json.dumps(getUserPlaylists(profile_data, authorization_header, 50, 0))
+
+@app.route('/discover_all', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def discoverAll():
+    # Get Header
+    allData = []
+    count = 0;
+    ArtistDict = {}
+    data = getUserToken()
+    data = json.loads(data)
+    access_token = data['access_token']
+    authorization_header = {"Authorization":"Bearer {}".format(access_token)}
+    query_params = {
+        'limit' : 50,
+        'offset' : count
+    }
+    get_request = requests.get("https://api.spotify.com/v1/me/tracks", data=query_params, headers=authorization_header)
+    tracks = json.loads(get_request.text)
+    tracks = tracks['items']
+    allData.append(tracks)
+    total = tracks['total']
+    count += 50
+
+    # while count < total :
+    #     query_params = {
+    #         'limit' : 50,
+    #         'offset' : count
+    #     }
+    #     get_request = requests.get("https://api.spotify.com/v1/me/tracks", data=query_params, headers=authorization_header)
+    #     tracks = json.loads(get_request.text)
+    #     tracks = tracks['items']
+    #     allData.append(tracks)
+    #     count += 50
+
+    # return len(allData)
+    return "test"
+
+
+
+@app.route('/add_playlist', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def addPlaylist():
+    name = request.args['name']
+    public = request.args['public']
+    collaborative = request.args['collaborative']
+    href = request.args['href']
+    href = href + "/playlists"
+
+    # Get Header
+    data = getUserToken()
+    data = json.loads(data)
+    access_token = data['access_token']
+    authorization_header = {
+        # These are requirements to delete a track
+        "Authorization":"Bearer {}".format(access_token) ,
+        "Content-Type" : "application/json"
+    }
+
+    body_data = json.dumps({ "name" : name, "public" : True, "collaborative" : False })
+
+    response = requests.post(href, headers=authorization_header, data=body_data)
+    responseObj = json.loads(response.text);
+    return json.dumps(responseObj)
+
 
 
 @app.route('/logout', methods=['GET', 'POST', 'OPTIONS'])

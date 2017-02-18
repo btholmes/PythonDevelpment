@@ -17,6 +17,27 @@
     margin-left: 40%;
 }
 
+.float-right{
+    float: right;
+}
+.float-left{
+    float: left;
+}
+.border-bottom {
+    border-bottom: 1px solid black;
+}
+.hoverMe:hover {
+    cursor: pointer;
+    background: black;
+    color: white;
+}
+.arrow {
+    font-size: 1.5em;
+}
+.arrow:hover {
+    cursor: pointer;
+}
+
 /*LOADING icon stuff*/
 .loader {
     border: 16px solid #f3f3f3;

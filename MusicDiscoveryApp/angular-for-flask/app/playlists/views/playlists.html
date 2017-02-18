@@ -1,12 +1,35 @@
+<br>
+
+<div class = "row">
+    <div class = "col-lg">
+        <div class="input-group">
+            <input type="text" id = "playlistName" class="form-control" placeholder="New Playlist's Name">
+            <span class="input-group-btn">
+            <button ng-click = "addPlaylist()" class="btn btn-success" type="button">Add Playlist</button>
+          </span>
+        </div>
+    </div>
+</div>
+
+
+
+
 <div class = "col-md-5" ng-repeat = "item in playlists">
-
-
 
     <div class="single-item text-center">
         <div class="item-image">
-            <a  ng-click="goToPlaylist($event)"><img id={{item['tracks']['href']}}  class="card" src={{item['images'][0]['url']}} ></a>
+            <a  ng-click="goToPlaylist($event)">
+                <img
+                    name = "{{ item['name'] }}"
+                    id= "{{item['tracks']['href']}}"
+                    class="card"
+                    src= "{{item['images'][0]['url']}}"
+                >
+            </a>
         </div>
-        <h2 class="single-item-title">
+        <br>
+ <!--       <button ng-click = "deletePlaylist()" class = "btn btn-danger">Delete Playlist</button>   -->
+        <h2>
             {{item.name}}
         </h2>
 
