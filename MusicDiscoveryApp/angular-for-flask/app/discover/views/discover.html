@@ -1,7 +1,48 @@
 <h1 class = "text-center">{{ name }}</h1>
 <button class = "btn btn-success" ng-click="discoverAllArtists()">Discover From All Artists</button>
-<p>This page searches through all user's saved tracks, puts the artist name in a dictionary, counts the tracks by each
-artist, and then searches for new music by each artist (new < 3years) and shows the results of all new releases by each artist,
-    organized by artist with most songs at top
-</p>
 <br>
+<br>
+<br>
+
+<div class = "text-center text-danger">
+    <h4 class = "text-success">These are the Results</h4>
+<!--    <span ng-click = "prevPageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
+    Showing tracks {{ startToEnd }}
+    <span ng-click = "nextPageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
+    -->
+</div>
+<br>
+
+<div ng-repeat = "item in tracksData track by $index">
+    <div class = "row border-bottom hoverMe" ng-repeat="track in item.tracks">
+        <br>
+        <div class = "col-md-1">
+            <span style = "font-size:2em" ng-click = "playSong($event)" id = "{{ track['preview_url'] }}" class = "playButton glyphicon glyphicon-play-circle"></span>
+        </div>
+        <div class = "col-md-6">
+            <p><b>Track: </b> {{track['name']}} </p>
+            <p><b>Artist: </b> {{ track['artists'][0]['name'] }}</p>
+        </div>
+        <div class = "col-md-3">
+            <select id="{{ track['uri'] }}">
+                <optgroup label = "Select a Playlist">
+                    <option ng-repeat="playlistItem in playlists" value="{{ playlistItem['tracks']['href'] }}">{{ playlistItem['name'] }}</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class = "col-md-1">
+            <button class = "btn btn-success"><span ng-click = "addToPlaylist($event)"  id="{{ track['uri'] }}" class = "glyphicon glyphicon-plus"></span></button>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+
+<br>
+<!--
+<div class = "text-center text-danger">
+    <span ng-click = "prevPageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
+    Showing tracks {{ startToEnd }}
+    <span ng-click = "nextPageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
+</div>
+-->

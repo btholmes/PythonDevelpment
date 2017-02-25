@@ -1,13 +1,16 @@
 <h1>Tracks for <span class = "text-primary">{{ name }}</span> Playlist</h1>
 <!-- <button ng-click = "sortBySong()"   class = "btn btn-success">Sort By Song</button> -->
+<div class = "row text-center">
+    <img style="height:500px" src = "{{playlistImage }}">
 
+</div>
 <br>
 <br>
 
 <div class = "text-center text-danger">
-    <span ng-click = "pageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
-     Showing tracks 1-50
-    <span ng-click = "pageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
+    <span ng-click = "prevPageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
+     Showing tracks {{ startToEnd }}
+    <span ng-click = "nextPageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
 </div>
 <br>
 
@@ -27,9 +30,9 @@
 
 <br>
 <div class = "text-center text-danger">
-    <span ng-click = "pageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
-    Showing tracks 1-50
-    <span ng-click = "pageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
+    <span ng-click = "prevPageTurn()" class = "arrow glyphicon glyphicon-arrow-left"></span>
+    Showing tracks {{ startToEnd }}
+    <span ng-click = "nextPageTurn()" class = "arrow glyphicon glyphicon-arrow-right"></span>
 </div>
 
 <br>

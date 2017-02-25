@@ -28,7 +28,10 @@
 }
 .hoverMe:hover {
     cursor: pointer;
-    background: black;
+    background: #a8eaea;
+    /*color: white;*/
+}
+.playButton:hover{
     color: white;
 }
 .arrow {

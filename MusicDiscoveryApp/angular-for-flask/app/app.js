@@ -24,6 +24,7 @@ myApp.config(function($stateProvider, $urlRouterProvider){
           controller: 'tracksCtrl',
           params : {
               urlParam: null,
+              imgUrl: null,
               name: null,
               thisUrl: null
           },

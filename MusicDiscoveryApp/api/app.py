@@ -90,6 +90,7 @@ def getTracks() :
     url = request.args['url']
 
 
+
     data = getUserToken()
     data = json.loads(data)
     access_token = data['access_token']
@@ -100,6 +101,34 @@ def getTracks() :
 
     tracks = json.loads(tracks_response.text);
     return json.dumps(tracks)
+
+@app.route('/add_track', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def addTrack() :
+    # This method only gets the tracks for the current playlist
+
+
+    uris = request.args['uris']
+    url = request.args['url']
+
+
+    # print "In add track app.py "+ url
+    url = url + "?uris=" + uris
+
+    data = getUserToken()
+    data = json.loads(data)
+    access_token = data['access_token']
+    authorization_header = {
+        # These are requirements to delete a track
+        "Authorization":"Bearer {}".format(access_token) ,
+        "Content-Type" : "application/json"
+    }
+    # playlist_tracks_endpoint = "https://api.spotify.com/v1/users/{}/playlists/{}/tracks".format(user_id, playlist_id)
+    tracks_response = requests.post(url, headers=authorization_header)
+    # tracks_response = requests.get("https://api.spotify.com/v1/users/spotify_netherlands/playlists/3r8ok7gRfb23XIQTZ3ttOK/tracks", headers=authorization_header)
+
+    response = json.loads(tracks_response.text);
+    return json.dumps(response)
 
 @app.route('/delete_track', methods=['GET', 'POST', 'DELETE', 'OPTIONS'])
 @crossdomain(origin='*')

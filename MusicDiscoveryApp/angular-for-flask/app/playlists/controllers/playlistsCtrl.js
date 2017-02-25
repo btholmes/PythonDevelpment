@@ -22,7 +22,6 @@
                 url: "http://127.0.0.1:5001/playlists"
             }).then(function(data) {
                 // console.log(JSON.stringify(data.data));
-
                 $scope.playlists = data.data['items'];
                 // console.log(JSON.stringify($scope.playlists));
                 $(".loader").fadeOut();
@@ -39,11 +38,12 @@
                 method: 'GET',
                 url: "http://127.0.0.1:5001/tracks?url=" + tracksUrl
             }).then(function(data) {
+                console.log("tracks url is " + tracksUrl);
                 // console.log(JSON.stringify(data.data));
 
                 // $scope.playlists = data.data['items'];
                 $(".loader").fadeOut();
-                $state.go("tracks", {thisUrl : tracksUrl  , urlParam: JSON.stringify(data.data), name: playlistName});
+                $state.go("tracks", {thisUrl : tracksUrl  ,imgUrl : event.target.src, urlParam: JSON.stringify(data.data), name: playlistName});
             });
         }
 
@@ -56,8 +56,7 @@
                 method: 'POST',
                 url: "http://127.0.0.1:5001/add_playlist?name=" + name + "&href=" + userHref + "&public=True" + "&collaborative=True"
             }).then(function(data) {
-                console.log(JSON.stringify(data));
-
+                // console.log(JSON.stringify(data));
 
                 $(".loader").fadeOut();
             });
