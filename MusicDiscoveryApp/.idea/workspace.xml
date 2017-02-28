@@ -409,7 +409,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../AnalyticsWork/PBAnalytics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../public_html" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -1204,12 +1204,12 @@
       <workItem from="1487214344403" duration="23129000" />
       <workItem from="1487254956330" duration="25244000" />
       <workItem from="1487542061199" duration="2250000" />
-      <workItem from="1487961227321" duration="12572000" />
+      <workItem from="1487961227321" duration="12769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102047000" />
+    <option name="totallyTimeSpent" value="102244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
