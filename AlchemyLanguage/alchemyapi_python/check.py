@@ -23,6 +23,12 @@ import json
 #image_url = 'http://serbiandentaltourism.com/wp-content/uploads/2015/01/WhitenTeeth.jpg'
 image_url = 'http://static.guim.co.uk/sys-images/Arts/Arts_/Pictures/2009/3/31/1238515405719/Brown-bear-001.jpg'
 
+test_text = 'Bob broke my heart, and then made up this silly sentence to test the PHP SDK'
+test_html = '<html><head><title>The best SDK Test | AlchemyAPI</title></head><body><h1>Hello World!</h1><p>My favorite language is PHP</p></body></html>'
+test_url = 'http://www.nytimes.com/2013/07/13/us/politics/a-day-of-friction-notable-even-for-a-fractious-congress.html?_r=0'
+test_jpg = 'pigeon.jpg'
+
+
 # Create the AlchemyAPI Object
 alchemyapi = AlchemyAPI()
 
@@ -40,3 +46,17 @@ if response['status'] == 'OK':
     print('')
 else:
     print('Error in image tagging call: ', response['statusInfo'])
+    
+# Sentiment
+print('Checking sentiment . . . ')
+# response = alchemyapi.sentiment('text', test_text)
+response = alchemyapi.sentiment('url', test_url)
+if response['status'] == 'OK': 
+# 	print(json.dumps(response))
+    print(response['docSentiment']['type'])
+#     print('')
+	
+# response = alchemyapi.sentiment('html', test_html)
+# assert(response['status'] == 'OK')
+# response = alchemyapi.sentiment('url', test_url)
+
