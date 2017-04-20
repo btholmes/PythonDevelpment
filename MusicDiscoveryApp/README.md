@@ -1,30 +1,44 @@
-# Music Discovery App. 
+# Music Discovery App
 
+This is a music discovery app which utilizes the Spotify API to edit a user's playlist. It is integrated with Spotify Login,  
+and has a unique discovery system which pulls in the top tracks from all the artists in your saved music, and displays them. It also   includes a way to preview the music before deciding to add them to a specific playlist.   
 
 ## Home Page 
 
+This is the main page of the app, which displays all the user's playlists. Just click a playlist to view its contents.  
+
+
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.36.32%20AM.png?raw=true "Home Page")
 
+
 ## Playlists Page 
+
+This is the page which displays upon clicking a specific playlist. It includes all the music contained in the playlist, and provides   
+a way to delete specific songs.   
+
+
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.36.50%20AM.png?raw=true "Playlists Top")
 
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.36.59%20AM.png?raw=true "Playlists Scrolled")
 
+
 ## Discover Page
+
+The discover page allows a user to search by all artists in their saved music, and discover their most recent releases. Then  
+they can preview the song, and add them to a specific playlist in their library.  
+
 
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.37.44%20AM.png?raw=true "Discover New Music")
 
 
 This project is application skeleton for typical Flask and AngularJS web apps. You can use it to quickly bootstrap your Flask and Angular web app projects and dev environment.
 
-The project contains two things:
+The project setup contains two things:
 
 1. A sample Flask application configured to serve dynamic pages as well as provide an example API
 2. A sample AngularJS application based off [angular-seed](https://github.com/angular/angular-seed) used to interact with the API created using Flask
 
-## What's In The Box - Flask
-
-There's a ton of pre-packaged goodness in the Flask application for you. Here's the list:
+Both the python, and node servers must be running for the app to function.  
 
 ### Design
 
@@ -65,7 +79,7 @@ If you want to run the AngularJS application, you will also need:
 
 Clone the repo
 
-    git clone https://github.com/rdempsey/base-flask-app
+    git clone https://github.com/btholmes/PythonDevelpment
 
 Navigate to the main directory
 
@@ -88,7 +102,6 @@ Run the Flask app:
 
     python index.py
 
-Navigate to the home page: [http://localhost:5000](http://localhost:5000)
 
 ### Run the AngularJS App
 
@@ -112,6 +125,3 @@ Run the application:
 
 Browse to the default page: [http://localhost:8000/app](http://localhost:8000/app)
 
-CALLBACK URL
-http://127.0.0.1:5001/callback?
-code=AQCFo1FKMHw2OMyZyurpU4XV2ve_b3wXl8bFQeP_vnhQObPJBowTzmjeqcFi8Dk0k_gUZdpeOjDS7Z5ab4BqHbRVS_WdLtcBO5dDZ3G_EuqAbojasxxk-MBuPbUiL0q5Q_SzW5fw11b-WifkJ-H6-MXQlEDinJHyU8aWdc96gSTrkBDLr5-iEPWCVH4GjBS5j8_sN2o3aHbhdikZI9iATUBKpCx7RKP0W-5tEJ2g0kH2loORV-yMVYdVQRnudTVacIkXD-g
