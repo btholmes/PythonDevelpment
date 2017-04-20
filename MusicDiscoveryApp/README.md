@@ -13,8 +13,7 @@ This is the main page of the app, which displays all the user's playlists. Just 
 
 ## Playlists Page 
 
-This is the page which displays upon clicking a specific playlist. It includes all the music contained in the playlist, and provides   
-a way to delete specific songs.   
+This is the page which displays upon clicking a specific playlist. It includes all the music contained in the playlist, and provides a way to delete specific songs.   
 
 
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.36.50%20AM.png?raw=true "Playlists Top")
