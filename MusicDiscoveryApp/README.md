@@ -2,6 +2,8 @@
 
 ## Overview
 
+![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.36.32%20AM.png?raw=true "Optional Title")
+
 This project is application skeleton for typical Flask and AngularJS web apps. You can use it to quickly bootstrap your Flask and Angular web app projects and dev environment.
 
 The project contains two things:
