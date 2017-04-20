@@ -23,8 +23,7 @@ This is the page which displays upon clicking a specific playlist. It includes a
 
 ## Discover Page
 
-The discover page allows a user to search by all artists in their saved music, and discover their most recent releases. Then  
-they can preview the song, and add them to a specific playlist in their library.  
+The discover page allows a user to search by all artists in their saved music, and discover their most recent releases. Then they can preview the song, and add them to a specific playlist in their library.  
 
 
 ![Alt text](https://github.com/btholmes/PythonDevelpment/blob/master/MusicDiscoveryApp/ReadMeImages/Screen%20Shot%202017-04-20%20at%208.37.44%20AM.png?raw=true "Discover New Music")
