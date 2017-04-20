@@ -1,4 +1,5 @@
-# Base Flask App
+# Music Discovery App. 
+
 
 ## Home Page 
 
