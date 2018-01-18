@@ -1,4 +1,4 @@
-# Python Development Club
+# Python Development Club 2017
  * Resources
 * [coding bat problems](https://codingbat.com) (Click Python tab) 
 * [hackerrank problems](https://hackerrank.com) (Click Python tab) 
